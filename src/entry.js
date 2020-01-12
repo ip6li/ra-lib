@@ -31,8 +31,8 @@ class X509 {
         return createPKCS10(this.getConfig(), subject, modulus);
     }
 
-    createPKCS12(keyStroe, password) {
-        return createPKCS12(keyStroe, password);
+    createPKCS12(keyStore, password, friendlyName = "Powered by IP6LI") {
+        return createPKCS12(keyStore, password, friendlyName);
     }
 
     loadConfig(configURL, request=this.config.defaultRequest) {

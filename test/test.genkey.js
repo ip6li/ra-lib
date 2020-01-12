@@ -1,5 +1,5 @@
 const assert = chai.assert;
-const x509 = new MyX509("X509sessions", true);
+const x509 = new MyX509("X509sessions", false);
 
 describe('Crypto', function () {
     const refKeyPairRSA = {};
@@ -134,21 +134,26 @@ gDy3iU6RHfWM8mw7JKO8WA==
                 div_csr.innerText = result.csr;
                 const config = x509.getConfig().config;
                 x509.setConfig(config);
-                console.log(config);
                 return result;
             });
-        }).timeout(10000).slow(5000);
+        }).timeout(20000).slow(15000);
     });
 
     describe('Create PKCS#12', () => {
         it('PKCS#12 file', async () => {
+            const pkcs12password = "geheim";
             const configToolbox = x509.getConfig();
             const config = configToolbox.config;
             const keyStore = config.keystore;
             keyStore.privateKey = refKeyPairRSA.privateKey;
             keyStore.certificate = refKeyPairRSA.certificate;
-            return await x509.createPKCS12(keyStore, "geheim").then((result)=>{
-                console.log("pkcs12:\n%o", result);
+            return await x509.createPKCS12(keyStore, pkcs12password).then((p12b64)=>{
+                console.log(typeof p12b64);
+                const a = document.createElement('a');
+                a.download = 'certificate.p12';
+                a.setAttribute('href', 'data:application/x-pkcs12;base64,' + p12b64);
+                a.appendChild(document.createTextNode('Download'));
+                a.click();
             });
         }).timeout(10000).slow(5000);
     });
