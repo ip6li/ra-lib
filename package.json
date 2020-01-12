@@ -1,0 +1,25 @@
+{
+  "name": "crypt-fetch",
+  "version": "1.0.0",
+  "description": "An extension for X.509 based crypted/signed fetch operations",
+  "private": true,
+  "main": "entry.js",
+  "scripts": {
+    "install": "cd src && npm install",
+    "test": "cd ./src && npm install && cd ../test && npm run build && npm test"
+  },
+  "keywords": [],
+  "author": "Christian Felsing <support@felsing.net> (https://ip6.li/)",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/ip6li/crypt-fetch/issues",
+    "email": "support@ip6.li"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ip6li/crypt-fetch.git"
+  },
+  "engines": {
+    "node": ">=10"
+  }
+}

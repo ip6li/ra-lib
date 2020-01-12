@@ -1,0 +1,30 @@
+{
+  "name": "crypt-fetch",
+  "version": "1.0.0",
+  "description": "crypt-fetch source for library.",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "production": "webpack -p",
+    "build": "webpack",
+    "postinstall": "npm run build"
+  },
+  "keywords": [],
+  "author": "Christian Felsing <support@felsing.net> (https://ip6.li/)",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "forge": "https://github.com/digitalbazaar/forge.git"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "~4.39.1",
+    "webpack-cli": "^3.3.10"
+  },
+  "jshintConfig": {
+    "esversion": 6
+  }
+}

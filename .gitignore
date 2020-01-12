@@ -1,0 +1,10 @@
+test/node_modules
+src/node_modules
+src/dist
+.idea
+test/test-cert.crt
+test/test-cert.key
+test/test-cert-sign.crt
+test/test-cert-sign.key
+test-pki
+test/bundle.js
