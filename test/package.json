@@ -9,9 +9,8 @@
   },
   "scripts": {
     "build": "cp ../src/dist/bundle.js .",
-    "test": "npm run test-webserver && sleep 10 && npm run test-firefox && sleep 3 && kill `cat test-webserver.py.pid`",
-    "test-firefox": "export PROFILEDIR=`mktemp -p /tmp -d tmp-fx-profile.XXXXXX.d` && firefox -profile $PROFILEDIR -no-remote -new-instance http://127.0.0.1:8000 && rm -rf $PROFILEDIR",
-    "test-webserver": "npm run build && ./test-webserver.py &"
+    "test": "npm run test-firefox",
+    "test-firefox": "export PROFILEDIR=`mktemp -p /tmp -d tmp-fx-profile.XXXXXX.d` && firefox -profile $PROFILEDIR -no-remote -new-instance http://127.0.0.1:8000 && rm -rf $PROFILEDIR"
   },
   "dependencies": {},
   "devDependencies": {
@@ -20,5 +19,5 @@
     "webpack-cli": "^3.3.10"
   },
   "author": "Christian Felsing <support@felsing.net> (https://ip6.li/)",
-  "license": "GPL-3.0-or-later"
+  "license": "AGPL-3.0-or-later"
 }

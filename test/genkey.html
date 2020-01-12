@@ -8,45 +8,16 @@
 </head>
 <body>
 
-<form action="#" id="form_credentials">
-    <div>
-        <label for="username">Username:</label>
-        <input type="text" id="username"/>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password"/>
-    </div>
-    <div>
-        <input type="button" onclick="sendLogin();" id="send" value="Send"/>
-    </div>
-</form>
-
-<form action="#" id="form_message">
-    <div>
-        <label for="message">Message:</label>
-        <textarea id="message" rows="10" cols="50"></textarea>
-    </div>
-    <div>
-        <input type="button" onclick="sendMessage();" id="sendMsg" value="Send"/>
-    </div>
-</form>
-
 <div id="mocha"></div>
 
 <div>
-    <h3>Dump</h3>
-    <div id="dump" style="font-family: 'Courier New',monospace"></div>
+    <h3>Private Key</h3>
+    <div id="div_pkey" style="font-family: 'Courier New',monospace"></div>
 </div>
 
 <div>
-    <h3>Message</h3>
-    <div id="msg" style="font-family: 'Courier New',monospace"></div>
-</div>
-
-<div>
-    <h3>Debug Output</h3>
-    <div id="debug" style="font-family: 'Courier New',monospace"></div>
+    <h3>CSR</h3>
+    <div id="div_csr" style="font-family: 'Courier New',monospace"></div>
 </div>
 
 <script src="chai.js"></script>

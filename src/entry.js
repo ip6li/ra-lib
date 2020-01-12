@@ -32,7 +32,7 @@ class X509 {
     }
 
     createPKCS12(keyStroe, password) {
-        return createPKCS12(this.configToolbox, password);
+        return createPKCS12(keyStroe, password);
     }
 
     loadConfig(configURL, request=this.config.defaultRequest) {

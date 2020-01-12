@@ -13,7 +13,7 @@
   },
   "keywords": [],
   "author": "Christian Felsing <support@felsing.net> (https://ip6.li/)",
-  "license": "GPL-3.0-or-later",
+  "license": "AGPL-3.0-or-later",
   "dependencies": {
     "forge": "https://github.com/digitalbazaar/forge.git"
   },

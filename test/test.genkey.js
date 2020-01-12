@@ -89,24 +89,9 @@ fT6QylzRb2rQTvSen2GhBWW9844M76XXGQAPMbMCWWNk/+eNmPqV9oWJivpKt6vU
 gDy3iU6RHfWM8mw7JKO8WA==
 -----END CERTIFICATE-----`;
 
-    const id_debug = document.getElementById("debug");
-    id_debug.innerText = "";
-
-
-    function buf2hex(buffer) { // buffer is an ArrayBuffer
-        return Array.prototype.map.call(new Uint8Array(buffer), x => ('00' + x.toString(16)).slice(-2)).join(' ');
-    }
-
-    before("Loading Config", async () => {
-        const configURL = "http://127.0.0.1:8000/config.json";
-        x509.loadConfig(configURL).then(() => {
-            console.log("Config loaded");
-        });
-    });
-
-
     describe('TextEncoder class must resolve, because browser must support it', () => {
         it('should return a Promise resolve', async () => {
+            const plainText = "Hello world!\nUmlaute: äöüÄÖÜß€";
             let sequence = Promise.resolve();
             sequence = sequence.then(() => {
                 const uint8array = new TextEncoder("utf-8").encode(plainText);
@@ -122,8 +107,10 @@ gDy3iU6RHfWM8mw7JKO8WA==
         });
     });
 
-    describe('Create PKCS#10 Certificate Signing Request', () => {
-        it('should return a Promise resolve when CSR generation is successful',  () => {
+    describe('Create PKCS#10 Certificate Signing Request', async () => {
+        it('should return a Promise resolve when CSR generation is successful', async () => {
+            const div_pkey = document.getElementById("div_pkey");
+            const div_csr = document.getElementById("div_csr");
             const subject = [
                 {
                     name: 'commonName',
@@ -142,19 +129,28 @@ gDy3iU6RHfWM8mw7JKO8WA==
                     value: 'CAcert'
                 }
             ];
-            return x509.createPKCS10(subject, 2048)
-        }).slow(200);
+            return await x509.createPKCS10(subject, 2048).then((result)=>{
+                div_pkey.innerText = result.privateKey;
+                div_csr.innerText = result.csr;
+                const config = x509.getConfig().config;
+                x509.setConfig(config);
+                console.log(config);
+                return result;
+            });
+        }).timeout(10000).slow(5000);
     });
 
     describe('Create PKCS#12', () => {
-        it('PKCS#12 file',  () => {
+        it('PKCS#12 file', async () => {
             const configToolbox = x509.getConfig();
             const config = configToolbox.config;
             const keyStore = config.keystore;
             keyStore.privateKey = refKeyPairRSA.privateKey;
             keyStore.certificate = refKeyPairRSA.certificate;
-            return  x509.createPKCS12(keyStore, "geheim");
-        }).slow(500);
+            return await x509.createPKCS12(keyStore, "geheim").then((result)=>{
+                console.log("pkcs12:\n%o", result);
+            });
+        }).timeout(10000).slow(5000);
     });
 
 });
