@@ -1,5 +1,5 @@
 {
-  "name": "crypt-fetch",
+  "name": "ra-lib",
   "version": "1.0.0",
   "description": "An extension for X.509 based crypted/signed fetch operations",
   "private": true,
