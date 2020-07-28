@@ -1,6 +1,6 @@
 import forge from "forge";
 
-export default function createPKCS10(configToolbox, subject, modulus) {
+export default function createPKCS10(configToolbox, subject, modulus, attributes) {
 
     let sequence = Promise.resolve();
 
@@ -10,7 +10,10 @@ export default function createPKCS10(configToolbox, subject, modulus) {
         const csr = forge.pki.createCertificationRequest();
         csr.publicKey = keys.publicKey;
         csr.setSubject(subject);
-        csr.sign(keys.privateKey);
+        if (typeof attributes !== "undefined") {
+            csr.setAttributes(attributes);
+        }
+        csr.sign(keys.privateKey, forge.md.sha256.create());
 
         config.keystore.privateKey = forge.pki.privateKeyToPem(keys.privateKey);
         config.keystore.publicKey = forge.pki.publicKeyToPem(keys.publicKey);

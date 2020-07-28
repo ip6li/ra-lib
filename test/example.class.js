@@ -8,8 +8,8 @@ class MyX509 extends window.cfcrypt.X509 {
         return super.loadConfig(configURL);
     }
 
-    createPKCS10(subject, modulus) {
-        return super.createPKCS10(subject, modulus);
+    createPKCS10(subject, modulus, attributes) {
+        return super.createPKCS10(subject, modulus, attributes);
     }
 
     createPKCS12(keyStroe, password) {
