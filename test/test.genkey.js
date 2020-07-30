@@ -129,7 +129,7 @@ gDy3iU6RHfWM8mw7JKO8WA==
                     value: 'CAcert'
                 }
             ];
-            return await x509.createPKCS10(subject, 2048).then((result)=>{
+            return await x509.createPKCS10(subject, 4096).then((result)=>{
                 div_pkey.innerText = result.privateKey;
                 div_csr.innerText = result.csr;
                 const config = x509.getConfig().config;
