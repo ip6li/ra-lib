@@ -7,7 +7,6 @@ export default function createPKCS10(configToolbox, subject, modulus, attributes
 
     sequence = sequence.then(()=> {
         return forge.pki.rsa.generateKeyPair({bits: modulus, workers: -1}, function(err, keys) {
-            console.log(keys);
             const csr = forge.pki.createCertificationRequest();
             csr.publicKey = keys.publicKey;
             csr.setSubject(subject);
